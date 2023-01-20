@@ -1,2 +1,4 @@
 Erica Cheng
-Hope Post!
+William Jorge
+Hope Post
+Amanda Bolen
