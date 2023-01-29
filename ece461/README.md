@@ -1,5 +1,4 @@
-oclif-hello-world
-=================
+# oclif-hello-world
 
 oclif example Hello World CLI
 
@@ -10,14 +9,18 @@ oclif example Hello World CLI
 [![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
-* [Usage](#usage)
-* [Commands](#commands)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g ece461
 $ ece461 COMMAND
@@ -29,7 +32,9 @@ USAGE
   $ ece461 COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 ```sh-session
 $ npm install -g oclif-hello-world
 $ oex COMMAND
@@ -41,21 +46,25 @@ USAGE
   $ oex COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`ece461 hello PERSON`](#ece461-hello-person)
-* [`ece461 hello world`](#ece461-hello-world)
-* [`ece461 help [COMMANDS]`](#ece461-help-commands)
-* [`ece461 plugins`](#ece461-plugins)
-* [`ece461 plugins:install PLUGIN...`](#ece461-pluginsinstall-plugin)
-* [`ece461 plugins:inspect PLUGIN...`](#ece461-pluginsinspect-plugin)
-* [`ece461 plugins:install PLUGIN...`](#ece461-pluginsinstall-plugin-1)
-* [`ece461 plugins:link PLUGIN`](#ece461-pluginslink-plugin)
-* [`ece461 plugins:uninstall PLUGIN...`](#ece461-pluginsuninstall-plugin)
-* [`ece461 plugins:uninstall PLUGIN...`](#ece461-pluginsuninstall-plugin-1)
-* [`ece461 plugins:uninstall PLUGIN...`](#ece461-pluginsuninstall-plugin-2)
-* [`ece461 plugins update`](#ece461-plugins-update)
+
+- [`ece461 hello PERSON`](#ece461-hello-person)
+- [`ece461 hello world`](#ece461-hello-world)
+- [`ece461 help [COMMANDS]`](#ece461-help-commands)
+- [`ece461 plugins`](#ece461-plugins)
+- [`ece461 plugins:install PLUGIN...`](#ece461-pluginsinstall-plugin)
+- [`ece461 plugins:inspect PLUGIN...`](#ece461-pluginsinspect-plugin)
+- [`ece461 plugins:install PLUGIN...`](#ece461-pluginsinstall-plugin-1)
+- [`ece461 plugins:link PLUGIN`](#ece461-pluginslink-plugin)
+- [`ece461 plugins:uninstall PLUGIN...`](#ece461-pluginsuninstall-plugin)
+- [`ece461 plugins:uninstall PLUGIN...`](#ece461-pluginsuninstall-plugin-1)
+- [`ece461 plugins:uninstall PLUGIN...`](#ece461-pluginsuninstall-plugin-2)
+- [`ece461 plugins update`](#ece461-plugins-update)
 
 ## `ece461 hello PERSON`
 
@@ -168,7 +177,7 @@ ALIASES
   $ ece461 plugins add
 
 EXAMPLES
-  $ ece461 plugins:install myplugin 
+  $ ece461 plugins:install myplugin
 
   $ ece461 plugins:install https://github.com/someuser/someplugin
 
@@ -228,7 +237,7 @@ ALIASES
   $ ece461 plugins add
 
 EXAMPLES
-  $ ece461 plugins:install myplugin 
+  $ ece461 plugins:install myplugin
 
   $ ece461 plugins:install https://github.com/someuser/someplugin
 
@@ -346,16 +355,18 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
 <!-- commandsstop -->
-* [`oex hello PERSON`](#oex-hello-person)
-* [`oex hello world`](#oex-hello-world)
-* [`oex help [COMMAND]`](#oex-help-command)
-* [`oex plugins`](#oex-plugins)
-* [`oex plugins:inspect PLUGIN...`](#oex-pluginsinspect-plugin)
-* [`oex plugins:install PLUGIN...`](#oex-pluginsinstall-plugin)
-* [`oex plugins:link PLUGIN`](#oex-pluginslink-plugin)
-* [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
-* [`oex plugins update`](#oex-plugins-update)
+
+- [`oex hello PERSON`](#oex-hello-person)
+- [`oex hello world`](#oex-hello-world)
+- [`oex help [COMMAND]`](#oex-help-command)
+- [`oex plugins`](#oex-plugins)
+- [`oex plugins:inspect PLUGIN...`](#oex-pluginsinspect-plugin)
+- [`oex plugins:install PLUGIN...`](#oex-pluginsinstall-plugin)
+- [`oex plugins:link PLUGIN`](#oex-pluginslink-plugin)
+- [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
+- [`oex plugins update`](#oex-plugins-update)
 
 ## `oex hello PERSON`
 
@@ -490,7 +501,7 @@ ALIASES
   $ oex plugins add
 
 EXAMPLES
-  $ oex plugins:install myplugin 
+  $ oex plugins:install myplugin
 
   $ oex plugins:install https://github.com/someuser/someplugin
 
@@ -562,4 +573,5 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
 <!-- commandsstop -->
