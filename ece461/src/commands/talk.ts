@@ -1,7 +1,8 @@
 import {Command, Flags} from '@oclif/core'
 import githubApi from './github-api';
 
-const token = 'TOKEN';
+// const token = 'TOKEN';
+const token = process.argv[1];
 const username = 'cloudinary';
 const repoName = 'cloudinary_npm';
 
