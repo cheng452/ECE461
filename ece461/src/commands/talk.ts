@@ -1,6 +1,8 @@
 import {Args, Command, Flags} from '@oclif/core'
 import githubApi from '../github-api';
 
+let token: string = process.env["GITHUB_TOKEN"]!;
+
 const username = 'cloudinary';
 const repoName = 'cloudinary_npm';
 
@@ -11,12 +13,9 @@ export default class Talk extends Command {
     '$ ece461 talk\nTalk to an api',
   ]
 
-  static args = {
-    token: Args.string({description: 'Token for github', required: true})
-  }
   public async run(): Promise<void> {
     const {args} = await this.parse(Talk)
-    githubApi.getRepository(username, repoName, args.token).then((repo) => {
+    githubApi.getRepository(username, repoName, token).then((repo) => {
       console.log(repo);
     });
   }
