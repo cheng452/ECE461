@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { environment } from '../environment/environment';
 
 const API_BASE_URL = 'https://api.github.com';
 
@@ -12,7 +13,7 @@ async function getUser(username: string): Promise<GitHubUser> {
   try {
     const response = await axios.get(`${API_BASE_URL}/users/${username}`, {
       headers: {
-        Authorization: `Token ${process.env.GITHUB_TOKEN}`,
+        Authorization: `Token ${environment.GITHUB_TOKEN}`,
       },
     });
     return response.data;
