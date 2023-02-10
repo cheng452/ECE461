@@ -37,20 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var axios_1 = require("axios");
-var environment_1 = require("../environment/environment");
-var API_BASE_URL = 'https://api.github.com';
-function getUser(username, repo) {
+var API_BASE_URL = 'https://api.securityscorecards.dev';
+function getScorecardData(owner, repo) {
     return __awaiter(this, void 0, void 0, function () {
         var response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios_1["default"].get("".concat(API_BASE_URL, "/repos/").concat(username, "/").concat(repo), {
-                            headers: {
-                                Authorization: "Token ".concat(environment_1.environment.GITHUB_TOKEN)
-                            }
-                        })];
+                    return [4 /*yield*/, axios_1["default"].get("".concat(API_BASE_URL, "/projects/github.com/").concat(owner, "/").concat(repo))];
                 case 1:
                     response = _a.sent();
                     return [2 /*return*/, response.data];
@@ -65,13 +60,13 @@ function getUser(username, repo) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var user;
+        var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getUser('cloudinary', 'cloudinary_npm')];
+                case 0: return [4 /*yield*/, getScorecardData('cloudinary', 'cloudinary_npm')];
                 case 1:
-                    user = _a.sent();
-                    console.log(user);
+                    data = _a.sent();
+                    console.log(data);
                     return [2 /*return*/];
             }
         });

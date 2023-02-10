@@ -8,9 +8,9 @@ interface ScorecardData {
   date: string;
 }
 
-async function getScorecardData(id: number): Promise<ScorecardData> {
+async function getScorecardData(owner: string, repo: string): Promise<ScorecardData> {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${id}`);
+    const response = await axios.get(`${API_BASE_URL}/projects/github.com/${owner}/${repo}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -19,7 +19,7 @@ async function getScorecardData(id: number): Promise<ScorecardData> {
 }
 
 async function main() {
-  const data = await getScorecardData(123);
+  const data = await getScorecardData('cloudinary', 'cloudinary_npm');
   console.log(data);
 }
 

@@ -9,9 +9,9 @@ interface GitHubUser {
   avatar_url: string;
 }
 
-async function getUser(username: string): Promise<GitHubUser> {
+async function getUser(username: string, repo: string): Promise<GitHubUser> {
   try {
-    const response = await axios.get(`${API_BASE_URL}/users/${username}`, {
+    const response = await axios.get(`${API_BASE_URL}/repos/${username}/${repo}`, {
       headers: {
         Authorization: `Token ${environment.GITHUB_TOKEN}`,
       },
@@ -23,9 +23,8 @@ async function getUser(username: string): Promise<GitHubUser> {
   }
 }
 
-
 async function main() {
-  const user = await getUser('octocat');
+  const user = await getUser('cloudinary', 'cloudinary_npm');
   console.log(user);
 }
 
