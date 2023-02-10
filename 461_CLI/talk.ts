@@ -1,22 +1,31 @@
-import {Args, Command, Flags} from '@oclif/core'
-import githubApi from '../github-api';
+import axios from 'axios';
 
-let token: string = process.env["GITHUB_TOKEN"]!;
+const API_BASE_URL = 'https://api.github.com';
 
-const username = 'cloudinary';
-const repoName = 'cloudinary_npm';
+interface GitHubUser {
+  login: string;
+  id: number;
+  avatar_url: string;
+}
 
-export default class Talk extends Command {
-  static description = 'talk to endpoint'
-
-  static examples = [
-    '$ ece461 talk\nTalk to an api',
-  ]
-
-  public async run(): Promise<void> {
-    const {args} = await this.parse(Talk)
-    githubApi.getRepository(username, repoName, token).then((repo) => {
-      console.log(repo);
+async function getUser(username: string): Promise<GitHubUser> {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/users/${username}`, {
+      headers: {
+        Authorization: `Token ${process.env.GITHUB_TOKEN}`,
+      },
     });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 }
+
+
+async function main() {
+  const user = await getUser('octocat');
+  console.log(user);
+}
+
+main();
