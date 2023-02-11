@@ -19,3 +19,18 @@ export const environment = {
 
 ## Security and Authentication
 It is important to add a GitHub token in the environment folder for authorization purposes. GitHub only allows for a certain amount requests per hour, which can be avoided by authenticating with a personal GitHub token. Make sure to ignore this file when commiting changes to GitHub repo, for security reasons. 
+
+## Recent Changes to Update on
++ Implemented npmjs versions of rest and graphql api, and scorecard (WIP).
++ Created skeleton file for python CLI. 
+
+## Current Progress/To-Do List
++ Update readme to support changes in npmjs versus github.
++ Update python CLI files to support input arguments to pass to typescript files.
++ Create executable commands for auto grader.
++ Create output files with scoring metrics.
++ Implement additional scoring metrics outside scorecard, or justify dropping depending on time constraint. 
++ Complete Milestone documents and deliverables with correct formatting.
++ Handoff documentation.
++ Code comment updates.
++ NPMJS github repo link grabbing for passing to scorecard. 

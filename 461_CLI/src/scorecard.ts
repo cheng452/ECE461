@@ -19,7 +19,7 @@ async function getScorecardData(owner: string, repo: string): Promise<ScorecardD
 }
 
 async function main() {
-  const data = await getScorecardData('cloudinary', 'cloudinary_npm');
+  const data = await getScorecardData('expressjs', 'express');
   console.log(data);
 }
 
