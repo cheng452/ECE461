@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'https://api.securityscorecards.dev';
+const args = process.argv.slice(2)
+const fs = require('fs');
 
 interface ScorecardData {
   score: number;
@@ -19,8 +21,9 @@ async function getScorecardData(owner: string, repo: string): Promise<ScorecardD
 }
 
 async function main() {
-  const data = await getScorecardData('expressjs', 'express');
-  console.log(data);
+  const data = await getScorecardData(args[0], args[1]);
+  fs.writeFileSync('out/' + args[1] +'_scorecard.json', JSON.stringify(data, null, 2));
+  // console.log(data);
 }
 
 main();

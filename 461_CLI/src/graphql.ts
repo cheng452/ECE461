@@ -2,15 +2,18 @@ import axios from 'axios';
 import { environment } from '../environment/environment';
 
 const API_URI = 'https://api.github.com/graphql';
+const args = process.argv.slice(2)
+const fs = require('fs');
+
+//size, lang = ramp up
+//watchers versus # of forks = 
+//open issues
+//popularity 
 
 const GET_REPOSITORY = `
   query($repoName: String!, $owner: String!) {
     repository(name: $repoName, owner: $owner) {
-      name
-      url
-      description
-      createdAt
-      updatedAt
+      size
     }
   }
 `;
@@ -55,7 +58,7 @@ async function getRepository(
 }
 
 async function main() {
-  const repository = await getRepository('cloudinary_npm', 'cloudinary');
+  const repository = await getRepository(args[1], args[0]);
   console.log(repository);
 }
 
