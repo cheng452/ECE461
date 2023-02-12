@@ -1,5 +1,7 @@
 # ECE 461 CLI Project
 
+<img align="right" width="100" height="100" src="https://raw.githubusercontent.com/cheng452/ECE461/main/axolotl.png">
+
 ## Team Members:
 1. Erica Cheng
 2. William Jorge
