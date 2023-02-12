@@ -20,10 +20,10 @@ def graphql_metrics(args):
         gql_metrics[idx] = int(re.sub("[^0-9]", "", i))
     # forks = gql_metrics[0]
     # subs = gql_metrics[1]
-    # issues = gql_metrics[2]
+    issues = gql_metrics[2]
     # print(forks)
     # print(subs)
-    # print(issues)
+    print(issues)
     return gql_metrics
 
 def get_maintained(filename):
