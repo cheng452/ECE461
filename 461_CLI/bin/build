@@ -1,6 +1,0 @@
-#!/bin/bash
-
-tsc ../src/github-api.ts
-tsc ../src/graphql.ts
-tsc ../src/npmjs-api.ts
-tsc ../src/scorecard.ts
