@@ -1,6 +1,7 @@
 import sys
 # import json
 import subprocess
+from metrics_calc import *
 
 ## user input url
 input_url = sys.argv[1]
@@ -12,7 +13,10 @@ if ('github.com' in url_elements):
     owner = url_elements[3]
     repo = url_elements[4]
     args = [owner, repo]
-    subprocess.run(['node', 'src/github-api.js'] + args)
+    rest_call(args)
+    scorecard_call(args)
+    graphql_metrics(args)
+    get_maintained("out/cloudinary_npm_scorecard.json")
 
 elif ('www.npmjs.com' in url_elements):
     owner = url_elements[4]
@@ -24,7 +28,7 @@ elif ('www.npmjs.com' in url_elements):
     repo_parts = repo_withgit.split('.git')
     repo = repo_parts[0]
     args = [owner, repo]
-    subprocess.run(['node', 'src/scorecard.js'] + args, stdout=subprocess.PIPE).stdout
+    scorecard_call(args)
 
 else:
     print('URL entered is invalid. try again.')

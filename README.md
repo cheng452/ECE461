@@ -26,11 +26,8 @@ It is important to add a GitHub token in the environment folder for authorizatio
 
 ## Current Progress/To-Do List
 + Update readme to support changes in npmjs versus github.
-+ Update python CLI files to support input arguments to pass to typescript files.
 + Create executable commands for auto grader.
 + Create output files with scoring metrics.
-+ Implement additional scoring metrics outside scorecard, or justify dropping depending on time constraint. 
 + Complete Milestone documents and deliverables with correct formatting.
 + Handoff documentation.
 + Code comment updates.
-+ NPMJS github repo link grabbing for passing to scorecard. 

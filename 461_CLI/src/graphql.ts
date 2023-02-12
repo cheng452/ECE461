@@ -176,7 +176,13 @@ axios
     // console.log(`Subscribers: ${subscribers}.`);
     const issues_out = result.data.data.repository.issues.totalCount;
     // console.log(`Number of issues: ${issues_out}.`);
-    console.log(forkies + ", " + subscribers + ", " + issues_out)
+    // console.log(forkies + "," + subscribers + "," + issues_out)
+    let arr: number[] = [];
+    arr.push(forkies);
+    arr.push(subscribers);
+    arr.push(issues_out);
+    console.log(arr)
+
   })
   .catch((error) => {
     console.error(error);
