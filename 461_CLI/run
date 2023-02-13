@@ -11,9 +11,16 @@ elif [ "$1" == "install" ]; then
     npm install
 
 elif [ "$1" == "test" ]; then
-    exit 0
+    npm install
+    bash bin/run.sh build
+    python3 src/CLI.py $1
+    pip install pytest-cov
+    pytest --cov=test_suite
+    rm -r out/*
+    rm -r src/*.js
 
 else
+    bash bin/run.sh build
     python3 src/CLI.py $1
     rm -r out/*
     rm -r src/*.js

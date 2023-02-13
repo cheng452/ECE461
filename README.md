@@ -9,7 +9,7 @@
 4. Amanda Bolen
 
 ## Project Overview
-This project implements a simple command line interface (CLI) using TypeScript and Python. The user can feed a list of URLs of modules and packages hosted on GitHub to the CLI to obtain different descriptive scores about such packages. Some of these metrics are obtained using Google's Scorecard API, and others are calculated based on different factors using metrics obtained directly from the GitHub API. URLs can be links to GitHub as well as npmjs.org, however all calculations will be performed using data acquired from the GitHub repositories of these packages.
+This project implements a simple command line interface (CLI) using TypeScript and Python. The user can feed a list of URLs of modules and packages hosted on GitHub to the CLI to obtain different descriptive scores about the packages. Some of these metrics are obtained using Google's Scorecard API, and others are calculated based on different factors using metrics obtained directly from the GitHub API. URLs can be links to GitHub as well as npmjs.org, however all calculations will be performed using data acquired from the GitHub repositories of these packages.
 ## User Input
 Users are expected to provide a personal GitHub token in order to run `github-api.ts` file called by the Python CLI. Personal GitHub tokens should be stored in the environment folder in the `environment.ts` file. Users can add their GitHub token to this file using the following as skeleton code:
 ```
@@ -23,24 +23,21 @@ It is important to add a GitHub token in the environment folder for authorizatio
 
 ## Metric Calculations
 ### NetScore
-The NetScore of a package or module is be determined by averaging all of the following metrics described in this section.
+The NetScore of a package or module is be determined by averaging all of the following metrics described below.
 ### RampUp
-We determine the RampUp time by first determinig the programming language of the package and comparing that to our own defined list of the most common programming languages. Additionally, we will obtain the number of open issues on the GitHub repository of the package, along with the number of forks. The ration between these two values can be normalized to yield a RampUp score in the range [0, 1].
+We determine the RampUp time by obtaining the number of open issues on the GitHub repository of the package, along with the number of forks. The ratio between these two values can suggest how quickly issues may be resolved. The determined score will be normalized with respect to 1.
 ### Correctness
-We determine the Correctness metric by first obtaining the number of open issues that the repository of the package or module has, as well as the number of subscribers. The Correctness score is obtained from the normalization of the ratio between these two metrics within the range [0, 1].
+We determine the Correctness metric by first obtaining the number of open issues that the repository of the package or module has, as well as the number of subscribers. The Correctness score is obtained from the normalization of the ratio between these two metrics within the range [0, 1]. 
 ### BusFactor
-The BusFactor metric is calculted using the ratio between the amount of issues that a repository currently has open compared to the amount of subscribers that are working and updating the code in such repository.
+The BusFactor metric is calculated using the ratio between the amount of contributors that a repository  has and the "sweet spot" for a team of software engineers, determined to be 7 (as detailed by Google). This value will be normalized to 1.
 ### ResponsiveMaintainer
-This metric will come directly from the `Maintenance` score provided by the Scorecard API.
+This metric will come directly from the `Maintenance` score provided by the Scorecard API. This score will be normalized to 1. 
 ### License
 Like the maintenance metric, the License metric will be obtained directly from the Scorecard API. The range of scores for this metric are also in the range [0, 1], however the score will always be either 1 or 0 corresponding to whether or not the package has licensing, respectively.
 
 ## Recent Changes to Update on
-+ `CLI.py` file finished.
-+ `metrics_calc.py` file finished -- returns array of scores [net, etc.] to `CLI.py`
++ All files up to date.
++ Code coverage at 80% for `test_suite.py`. 
 
 ## Current Progress/To-Do List
-+ Update readme to support changes in npmjs versus github.
-+ Complete Milestone documents and deliverables with correct formatting.
-+ Handoff documentation.
-+ Code comment updates.
++ Complete code handoff. 

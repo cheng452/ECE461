@@ -6,6 +6,7 @@ from metrics_calc import get_scores
 ## user input url
 url_file = sys.argv[1]
 
+# gathering list of urls from URL input file
 urls = []
 with open(url_file) as f:
     for line in f:
@@ -15,6 +16,8 @@ for url in urls:
     ## split url into arguments to pass to typescript for api (respective to url type)
     url_elements = url.split('/')
     # print(url_elements)
+
+    # implemented when user enters github url
     if ('github.com' in url_elements):
         owner = url_elements[3]
         repo = url_elements[4]
@@ -22,9 +25,7 @@ for url in urls:
         scores = get_scores(args)
         # print(scores)
     
-        
-        # get_maintained("out/cloudinary_npm_scorecard.json")
-
+    # implemented when user enters npmjs url
     elif ('www.npmjs.com' in url_elements):
         owner = url_elements[4]
         args = [owner]
@@ -43,6 +44,7 @@ for url in urls:
         print('URL entered is invalid. Try again.')
         pass
 
+    # Creating dictionary with scoring entries for JSON output
     output = dict()
     output["URL"] = str(url)
     output["NET_SCORE"] = "{:.1f}".format(scores[0])

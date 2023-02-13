@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { environment } from '../environment/environment';
 
-const API_BASE_URL = 'https://api.github.com';
+const GITHUB_BASE = 'https://api.github.com';
+
+// Gather arguments (owner, repo) from call to file
 const args = process.argv.slice(2)
 const fs = require('fs');
 
@@ -11,9 +13,11 @@ interface GitHubUser {
   avatar_url: string;
 }
 
-async function getUser(username: string, repo: string): Promise<GitHubUser> {
+// Function gathers all data available from call to GitHub API about a given repo
+// Produces JSON output file that is used later in the program. 
+async function getOwner(owner: string, repo: string): Promise<GitHubUser> {
   try {
-    const response = await axios.get(`${API_BASE_URL}/repos/${username}/${repo}`, {
+    const response = await axios.get(`${GITHUB_BASE}/repos/${owner}/${repo}`, {
       headers: {
         Authorization: `Token ${environment.GITHUB_TOKEN}`,
       },
@@ -25,11 +29,10 @@ async function getUser(username: string, repo: string): Promise<GitHubUser> {
   }
 }
 
+// Main function obtains information about a repository and creates a JSON output file
 async function main() {
-  const user = await getUser(args[0], args[1]);
-  // console.log(user);
-  fs.writeFileSync('out/' + args[1] + '_REST.json', JSON.stringify(user, null, 2));
-  // return user;
+  const owner = await getOwner(args[0], args[1]);
+  fs.writeFileSync('out/' + args[1] + '_REST.json', JSON.stringify(owner, null, 2));
 }
 
 main();
