@@ -20,7 +20,7 @@ elif [ "$1" == "test" ]; then
     rm -r src/*.js
 
 else
-    bash bin/run.sh build
+    ./run build
     python3 src/CLI.py $1
     rm -r out/*
     rm -r src/*.js
