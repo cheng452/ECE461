@@ -59,11 +59,11 @@ def get_license(filename):
                     return 0
 
 def ramp_calc(issues, forks):
-    ramp_score = issues/forks
+    ramp_score = forks/issues
     return ramp_score
 
 def correctness_calc(issues, subs):
-    correctness_score = issues/subs
+    correctness_score = subs/issues
     return correctness_score
 
 def bus_factor_calc(args):
@@ -73,17 +73,29 @@ def bus_factor_calc(args):
     bus_factor_score = contributors / 7 ##7 is chosen based on "magic number" for SWE team size via google
     return bus_factor_score
 
+def norm(value):
+    return 1-(1 / (1 + value))
+
 def get_scores(args):
     rest_call(args)
     scorecard_call(args)
     forks, subs, issues = graphql_metrics(args)
     ramp_score = ramp_calc(issues, forks)
+    norm_ramp = norm(ramp_score)
     correctness = correctness_calc(issues, subs)
+    norm_correct = norm(correctness)
     bus_factor = bus_factor_calc(args)
+    norm_bf = norm(bus_factor)
     filename = "out/" + args[1] + "_scorecard.json"
-    licensed = get_license(filename)
     maintained = get_maintained(filename)
+    if (maintained != 0):
+        norm_maintained = norm(maintained)
+    else:
+        norm_maintained = 0
 
-    net_score = ramp_score + correctness + bus_factor + licensed + maintained
-    scores = [net_score, ramp_score, correctness, bus_factor, licensed, maintained]
+    ## dont need normalization-- return 0 or 1
+    licensed = get_license(filename)
+
+    net_score = (norm_ramp + norm_correct + norm_bf + licensed + norm_maintained) / 5 ##average of each metric
+    scores = [net_score, norm_ramp, norm_correct, norm_bf, licensed, norm_maintained]
     return scores

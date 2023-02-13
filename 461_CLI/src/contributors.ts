@@ -5,7 +5,7 @@ import {request} from "graphql-request";
 const args = process.argv.slice(2)
 const fs = require('fs');
 
-async function getNumContributors(owner, repo) {
+export async function getNumContributors(owner, repo) {
     const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}/contributors`, {
         headers: {
             'Authorization': `Token ${environment.GITHUB_TOKEN}`

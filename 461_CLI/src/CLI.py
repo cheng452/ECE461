@@ -1,5 +1,5 @@
 import sys
-# import json
+import json
 import subprocess
 from metrics_calc import get_scores
 
@@ -20,7 +20,8 @@ for url in urls:
         repo = url_elements[4]
         args = [owner, repo]
         scores = get_scores(args)
-        print(scores)
+        # print(scores)
+    
         
         # get_maintained("out/cloudinary_npm_scorecard.json")
 
@@ -36,9 +37,20 @@ for url in urls:
         args = [owner, repo]
         # scorecard_call(args)
         scores= get_scores(args)
-        print(scores)
+        # print(scores)
 
     else:
-        print('URL entered is invalid. try again.')
+        print('URL entered is invalid. Try again.')
         pass
+
+    output = dict()
+    output["URL"] = str(url)
+    output["NET_SCORE"] = "{:.1f}".format(scores[0])
+    output["RAMP_UP_SCORE"] = "{:.1f}".format(scores[1])
+    output["CORRECTNESS_SCORE"] = "{:.1f}".format(scores[2])
+    output["BUS_FACTOR_SCORE"] = "{:.1f}".format(scores[3])
+    output["RESPONSIVE_MAINTAINER_SCORE"] = "{:.1f}".format(scores[4])
+    output["LICENSE_SCORE"] = 0 if scores[5] < 1 else 1
+
+    print(json.dumps(output))
 

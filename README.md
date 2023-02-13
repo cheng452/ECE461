@@ -9,8 +9,7 @@
 4. Amanda Bolen
 
 ## Project Overview
-This project implements a simple command line interface (CLI) using TypeScript and Python. The user can feed a list of URLs of modules and packages hosted on GitHub to the CLI to obtain different descriptive scores about such packages. Some of these metrics are obtained using Google's Scorecard API, and others are calculated based on different factors using metrics obtained directly from the GitHub API.
-
+This project implements a simple command line interface (CLI) using TypeScript and Python. The user can feed a list of URLs of modules and packages hosted on GitHub to the CLI to obtain different descriptive scores about such packages. Some of these metrics are obtained using Google's Scorecard API, and others are calculated based on different factors using metrics obtained directly from the GitHub API. URLs can be links to GitHub as well as npmjs.org, however all calculations will be performed using data acquired from the GitHub repositories of these packages.
 ## User Input
 Users are expected to provide a personal GitHub token in order to run `github-api.ts` file called by the Python CLI. Personal GitHub tokens should be stored in the environment folder in the `environment.ts` file. Users can add their GitHub token to this file using the following as skeleton code:
 ```
