@@ -1,29 +1,15 @@
 #!/bin/bash
 
-mkdir out > /dev/null 2>&1
+{
+    IFS=$'\n' read -r -d '' CAPTURED_STDERR;
+    IFS=$'\n' read -r -d '' CAPTURED_STDOUT;
+} < <((printf '\0%s\0' "$(./helper_run $1)" 1>&2) 2>&1)
 
-if [ "$1" == "build" ]; then
-    tsc src/github-api.ts
-    tsc src/graphql.ts
-    tsc src/npmjs-api.ts
-    tsc src/scorecard.ts
-    tsc src/contributors.ts
-
-elif [ "$1" == "install" ]; then
-    npm install
-
-elif [ "$1" == "test" ]; then
-    npm install
-    bash bin/run.sh build
-    python3 src/CLI.py $1
-    pip install pytest-cov
-    pytest --cov=test_suite
-    rm -r out/*
-    rm -r src/*.js
-
-else
-    ./run build
-    python3 src/CLI.py $1
-    rm -r out/*
-    rm -r src/*.js
+if [ "$LOG_LEVEL" = "0" ]; then
+    echo "No logging!" > /dev/null 2>&1
+elif [ "$LOG_LEVEL" = "1" ]; then
+    echo "${CAPTURED_STDOUT}" > "logs/log2.txt"
+elif [ "$LOG_LEVEL" = "2" ]; then
+    echo "${CAPTURED_STDOUT}" > "logs/log.txt"
+    echo "${CAPTURED_STDERR}" > "logs/log.txt"
 fi
