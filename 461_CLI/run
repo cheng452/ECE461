@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir out > /dev/null 2>&1
+
 if [ "$1" == "build" ]; then
     tsc src/github-api.ts
     tsc src/graphql.ts
