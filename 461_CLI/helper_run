@@ -15,6 +15,7 @@ if [ "$1" == "build" ]; then
     tsc src/npmjs-api.ts
     tsc src/scorecard.ts
     tsc src/contributors.ts
+    tsc src/merge-percentage.ts
 
 elif [ "$1" == "install" ]; then
     npm install

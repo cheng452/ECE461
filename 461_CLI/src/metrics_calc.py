@@ -11,6 +11,13 @@ def rest_call(args):
     subprocess.run(['node', 'src/github-api.js'] + args)
     return
 
+# calls rest API for fraction of code from reviewed PRs
+def merge_percentage(args):
+    if len(args) != 2:
+        return False
+    subprocess.run(['node', 'src/merge-percentage.js'] + args)
+    return
+
 # calls scorecard function, given args ([owner, repo])
 def scorecard_call(args):
     subprocess.run(['node', 'src/scorecard.js'] + args, stdout=subprocess.PIPE).stdout
@@ -98,6 +105,9 @@ def norm(value):
 def get_scores(args):
     # call to initialize rest api output file
     rest_call(args)
+
+    # call to get merge percentage
+    merge_percentage((['cloudinary', 'cloudinary_npm']))
 
     # call to initialize scorecard output file
     scorecard_call(args)
