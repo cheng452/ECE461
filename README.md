@@ -6,7 +6,7 @@
 1. Erica Cheng
 2. William Jorge
 3. Hope Post
-4. Amanda Bolen
+4. Amanda Bolen 
 
 
 ## Project Overview
