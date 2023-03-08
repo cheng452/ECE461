@@ -1,21 +1,23 @@
 #!/bin/bash
 
 if [ "$1" == "build" ]; then
+    mkdir out > /dev/null 2>&1
     tsc src/github-api.ts
     tsc src/graphql.ts
     tsc src/npmjs-api.ts
     tsc src/scorecard.ts
     tsc src/contributors.ts
+    tsc src/Version.ts
 
 elif [ "$1" == "install" ]; then
     npm install
 
 elif [ "$1" == "test" ]; then
     npm install
-    bash bin/run.sh build
-    python3 src/CLI.py $1
+    ./run build
+    python3 src/CLI.py "test/sample.txt"
     pip install pytest-cov
-    pytest --cov=test_suite
+    python3 -m pytest --cov=test_suite
     rm -r out/*
     rm -r src/*.js
 
