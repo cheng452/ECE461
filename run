@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ "$1" == "build" ]; then
+    tsc 461_CLI/src/github-api.ts
+    tsc 461_CLI/src/graphql.ts
+    tsc 461_CLI/src/npmjs-api.ts
+    tsc 461_CLI/src/scorecard.ts
+    tsc 461_CLI/src/contributors.ts
+
+elif [ "$1" == "install" ]; then
+    npm install
+
+elif [ "$1" == "test" ]; then
+    npm install
+    bash bin/run.sh build
+    python3 461_CLI/src/CLI.py $1
+    pip install pytest-cov
+    pytest --cov=test_suite
+    rm -r 461_CLI/out/*
+    rm -r 461_CLI/src/*.js
+
+else
+    ./run build
+    python3 461_CLI/src/CLI.py $1
+    rm -r 461_CLI/out/*
+    rm -r 461_CLI/src/*.js
+fi
