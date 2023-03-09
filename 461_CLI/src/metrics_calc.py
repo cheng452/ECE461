@@ -16,6 +16,7 @@ def merge_percentage(args):
     if len(args) != 2:
         return False
     subprocess.run(['node', 'src/merge-percentage.ts'] + args)
+
     return
 
 # calls scorecard function, given args ([owner, repo])
@@ -104,6 +105,13 @@ def bus_factor_calc(args):
     bus_factor_score = contributors / 7 ##7 is chosen based on "magic number" for SWE team size via google
     return bus_factor_score
 
+# Pinned version calculation, determined by number of pinned versions within package.json. Percentage of pinned to total dependencies
+def version_calc(args):
+    versions = subprocess.run(['node', 'src/Version.js'] + args, stdout=subprocess.PIPE).stdout
+    versions_score = versions.decode().strip()
+    versions_score = float(versions_score)
+    return versions_score
+
 # normalization to 1 function
 def norm(value):
     return 1-(1 / (1 + value))
@@ -134,6 +142,9 @@ def get_scores(args):
     bus_factor = bus_factor_calc(args)
     norm_bf = norm(bus_factor)
 
+    # Version score call, returns version score, normalizes to 1
+    versions = version_calc(args)
+
     # initializes filename of scorecard, given repo argument
     filename = "out/" + args[1] + "_scorecard.json"
 
@@ -153,9 +164,9 @@ def get_scores(args):
     licensed = get_license(filename)
 
     # net score calculation, determined by average of all normalized scores
-    net_score = (norm_ramp + norm_correct + norm_bf + licensed + norm_maintained + mp) / 6
+    net_score = (norm_ramp + norm_correct + norm_bf + licensed + norm_maintained + versions + mp) / 6
 
     # array initialization for net and individial scores (normalized, or stated otherwise)
     # return array of values for use in output
-    scores = [net_score, norm_ramp, norm_correct, norm_bf, licensed, norm_maintained, mp]
+    scores = [net_score, norm_ramp, norm_correct, norm_bf, licensed, norm_maintained, versions, mp]
     return scores

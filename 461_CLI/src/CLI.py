@@ -12,10 +12,12 @@ with open(url_file) as f:
     for line in f:
         urls.append(line.rstrip('\n'))
 
+# Initialize list of dictionaries for sorting and printing
+dict_list = []
+
 for url in urls:
     ## split url into arguments to pass to typescript for api (respective to url type)
     url_elements = url.split('/')
-    # print(url_elements)
 
     # implemented when user enters github url
     if ('github.com' in url_elements):
@@ -23,7 +25,6 @@ for url in urls:
         repo = url_elements[4]
         args = [owner, repo]
         scores = get_scores(args)
-        # print(scores)
     
     # implemented when user enters npmjs url
     elif ('www.npmjs.com' in url_elements):
@@ -36,9 +37,7 @@ for url in urls:
         repo_parts = repo_withgit.split('.git')
         repo = repo_parts[0]
         args = [owner, repo]
-        # scorecard_call(args)
         scores= get_scores(args)
-        # print(scores)
 
     else:
         print('URL entered is invalid. Try again.')
@@ -54,6 +53,14 @@ for url in urls:
     output["RESPONSIVE_MAINTAINER_SCORE"] = "{:.1f}".format(scores[4])
     output["LICENSE_SCORE"] = 0 if scores[5] < 1 else 1
     output["CODE_REVIEWED_PERCENTAGE"] = "{:.1f}".format(scores[5])
+    output["VERSION_SCORE"] = "{:.1f}".format(scores[6])
+    
+    # Add to dictionary list
+    dict_list.append(output)
 
-    print(json.dumps(output))
+# Sort list of dictionaries based on NET_SCORE field in descending order
+dict_list = sorted(dict_list, key=lambda x: x['NET_SCORE'], reverse=True)
 
+# Print dictionaries in JSON format
+for url_scores in dict_list:
+    print(json.dumps(url_scores))
