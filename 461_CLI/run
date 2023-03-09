@@ -8,7 +8,7 @@
 if [ "$LOG_LEVEL" = "0" ]; then
     echo "No logging!" > /dev/null 2>&1
 elif [ "$LOG_LEVEL" = "1" ]; then
-    echo "${CAPTURED_STDOUT}" > "logs/log2.txt"
+    echo "${CAPTURED_STDOUT}" > "logs/log.txt"
 elif [ "$LOG_LEVEL" = "2" ]; then
     echo "${CAPTURED_STDOUT}" > "logs/log.txt"
     echo "${CAPTURED_STDERR}" > "logs/log.txt"
