@@ -15,7 +15,8 @@ def rest_call(args):
 def merge_percentage(args):
     if len(args) != 2:
         return False
-    subprocess.run(['node', 'src/merge-percentage.js'] + args)
+    subprocess.run(['node', 'src/merge-percentage.ts'] + args)
+
     return
 
 # calls scorecard function, given args ([owner, repo])
@@ -70,6 +71,13 @@ def get_license(filename):
                 else:
                     return 0
 
+# get merge percentage for repo
+def get_merge_percentage(filename):
+    with open(filename) as f:
+        data = json.load(f)
+
+    return data
+
 # ramp up calculation, determined by # of forks, # of issues
 # based off assumption that the ratio correlates to how easy of a fix the issues may be
 def ramp_calc(issues, forks):
@@ -113,8 +121,8 @@ def get_scores(args):
     # call to initialize rest api output file
     rest_call(args)
 
-    # call to get merge percentage
-    merge_percentage((['cloudinary', 'cloudinary_npm']))
+    # call to merge percentage statistic
+    merge_percentage(args)
 
     # call to initialize scorecard output file
     scorecard_call(args)
@@ -140,6 +148,10 @@ def get_scores(args):
     # initializes filename of scorecard, given repo argument
     filename = "out/" + args[1] + "_scorecard.json"
 
+    # init merge percentage filename
+    mp_filename = "out/" + args[1] + "_MERGE_PERCENTAGE.json"
+    mp = get_merge_percentage(mp_filename)
+
     # maintained score call, returns maintained score, normalizes if score is not 0, otherwise returns 0
     maintained = get_maintained(filename)
     if (maintained != 0):
@@ -152,9 +164,9 @@ def get_scores(args):
     licensed = get_license(filename)
 
     # net score calculation, determined by average of all normalized scores
-    net_score = (norm_ramp + norm_correct + norm_bf + licensed + norm_maintained + versions) / 6
+    net_score = (norm_ramp + norm_correct + norm_bf + licensed + norm_maintained + versions + mp) / 6
 
     # array initialization for net and individial scores (normalized, or stated otherwise)
     # return array of values for use in output
-    scores = [net_score, norm_ramp, norm_correct, norm_bf, licensed, norm_maintained, versions]
+    scores = [net_score, norm_ramp, norm_correct, norm_bf, licensed, norm_maintained, versions, mp]
     return scores

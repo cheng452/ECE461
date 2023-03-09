@@ -52,6 +52,7 @@ for url in urls:
     output["BUS_FACTOR_SCORE"] = "{:.1f}".format(scores[3])
     output["RESPONSIVE_MAINTAINER_SCORE"] = "{:.1f}".format(scores[4])
     output["LICENSE_SCORE"] = 0 if scores[5] < 1 else 1
+    output["CODE_REVIEWED_PERCENTAGE"] = "{:.1f}".format(scores[5])
     output["VERSION_SCORE"] = "{:.1f}".format(scores[6])
     
     # Add to dictionary list
