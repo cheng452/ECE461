@@ -1,0 +1,38 @@
+up to date, audited 402 packages in 900ms
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+{"URL": "https://github.com/cloudinary/cloudinary_npm", "NET_SCORE": "0.7", "RAMP_UP_SCORE": "1.0", "CORRECTNESS_SCORE": "1.0", "BUS_FACTOR_SCORE": "0.8", "RESPONSIVE_MAINTAINER_SCORE": "0.0", "LICENSE_SCORE": 0}
+{"URL": "https://www.npmjs.com/package/express", "NET_SCORE": "0.9", "RAMP_UP_SCORE": "1.0", "CORRECTNESS_SCORE": "1.0", "BUS_FACTOR_SCORE": "0.8", "RESPONSIVE_MAINTAINER_SCORE": "1.0", "LICENSE_SCORE": 0}
+{"URL": "https://github.com/nullivex/nodist", "NET_SCORE": "0.7", "RAMP_UP_SCORE": "0.8", "CORRECTNESS_SCORE": "1.0", "BUS_FACTOR_SCORE": "0.8", "RESPONSIVE_MAINTAINER_SCORE": "1.0", "LICENSE_SCORE": 0}
+{"URL": "https://github.com/lodash/lodash", "NET_SCORE": "0.8", "RAMP_UP_SCORE": "1.0", "CORRECTNESS_SCORE": "1.0", "BUS_FACTOR_SCORE": "0.8", "RESPONSIVE_MAINTAINER_SCORE": "1.0", "LICENSE_SCORE": 0}
+{"URL": "https://www.npmjs.com/package/browserify", "NET_SCORE": "0.8", "RAMP_UP_SCORE": "0.8", "CORRECTNESS_SCORE": "1.0", "BUS_FACTOR_SCORE": "0.8", "RESPONSIVE_MAINTAINER_SCORE": "1.0", "LICENSE_SCORE": 0}
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pytest-cov in /home/shay/a/hlovell/.local/lib/python3.10/site-packages (4.0.0)
+Requirement already satisfied: coverage[toml]>=5.2.1 in /home/shay/a/hlovell/.local/lib/python3.10/site-packages (from pytest-cov) (7.1.0)
+Requirement already satisfied: pytest>=4.6 in /home/shay/a/hlovell/.local/lib/python3.10/site-packages (from pytest-cov) (7.2.1)
+Requirement already satisfied: tomli in /usr/lib/python3/dist-packages (from coverage[toml]>=5.2.1->pytest-cov) (1.2.2)
+Requirement already satisfied: attrs>=19.2.0 in /usr/lib/python3/dist-packages (from pytest>=4.6->pytest-cov) (21.2.0)
+Requirement already satisfied: exceptiongroup>=1.0.0rc8 in /home/shay/a/hlovell/.local/lib/python3.10/site-packages (from pytest>=4.6->pytest-cov) (1.1.0)
+Requirement already satisfied: iniconfig in /home/shay/a/hlovell/.local/lib/python3.10/site-packages (from pytest>=4.6->pytest-cov) (2.0.0)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from pytest>=4.6->pytest-cov) (21.3)
+Requirement already satisfied: pluggy<2.0,>=0.12 in /usr/lib/python3/dist-packages (from pytest>=4.6->pytest-cov) (0.13.0)
+============================= test session starts ==============================
+platform linux -- Python 3.10.6, pytest-7.2.1, pluggy-0.13.0
+rootdir: /home/shay/a/hlovell/ECE461/ECE461TeamAFJK_Part2/ECE461_TeamAFJK/461_CLI
+plugins: cov-4.0.0
+collected 20 items
+
+src/test_suite.py ....................                                   [100%]
+
+---------- coverage: platform linux, python 3.10.6-final-0 -----------
+Name                Stmts   Miss  Cover
+---------------------------------------
+src/test_suite.py      70      0   100%
+---------------------------------------
+TOTAL                  70      0   100%
+
+
+============================== 20 passed in 5.02s ==============================
