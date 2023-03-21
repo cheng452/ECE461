@@ -86,7 +86,6 @@ def correctness_calc(issues, subs):
 def bus_factor_calc(args):
     contributors = subprocess.run(['node', 'src/contributors.js'] + args, stdout=subprocess.PIPE).stdout
     contributors = contributors.decode().strip()
-    print(contributors)
     contributors = int(contributors)
     bus_factor_score = contributors / 7 ##7 is chosen based on "magic number" for SWE team size via google
     return bus_factor_score

@@ -1,3 +1,4 @@
 /environment
 *.js
 .coverage
+/src/__pycache__

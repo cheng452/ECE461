@@ -11,18 +11,17 @@ elif [ "$1" == "install" ]; then
     npm install
 
 elif [ "$1" == "test" ]; then
-    npm install
     ./run build
     python3 461_CLI/src/CLI.py $1
     pip install pytest-cov
     pytest --cov=test_suite
-    rm -r out/*
+    rm -r out/*.json
     rm -r src/*.js
-    rm *.coverage
+    rm .coverage
 
 else
     ./run build
     python3 src/CLI.py $1
-    rm -r out/*
+    rm -r out/*.json
     rm -r src/*.js
 fi
