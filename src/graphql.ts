@@ -29,7 +29,7 @@ const query = `
 
 // Adding header to include Github token, stored in environment
 const headers = {
-  Authorization: `Bearer ${process.env.GITHUB_BASIC_TOKEN}`,
+  Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
 };
 
 // Sending the query and acquiring the response, isolating forks, subscribers, and issues

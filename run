@@ -12,7 +12,6 @@ elif [ "$1" == "install" ]; then
 
 elif [ "$1" == "test" ]; then
     ./run build
-    python3 461_CLI/src/CLI.py $1
     pip install pytest-cov
     pytest --cov=test_suite
     rm -r out/*.json
