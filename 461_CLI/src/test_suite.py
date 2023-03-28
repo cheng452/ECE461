@@ -2,15 +2,17 @@ import json
 import os
 import unittest
 
-from metrics_calc import rest_call
-from metrics_calc import scorecard_call
-from metrics_calc import graphql_metrics
-from metrics_calc import get_maintained
-from metrics_calc import get_license
-from metrics_calc import ramp_calc
-from metrics_calc import correctness_calc
-from metrics_calc import bus_factor_calc
-from metrics_calc import get_scores
+from metrics_calc import (
+    bus_factor_calc,
+    correctness_calc,
+    get_license,
+    get_maintained,
+    get_scores,
+    graphql_metrics,
+    ramp_calc,
+    rest_call,
+    scorecard_call
+)
 
 # import coverage
 
