@@ -1,33 +1,36 @@
-import unittest
-from metrics_calc import *
 import os
+import unittest
+
+from metrics_calc import *
+
 # import coverage
+
 
 class TestStringMethods(unittest.TestCase):
     def test_restcall_good(self):
-        rest_call(['lodash', 'lodash'])
+        rest_call(["lodash", "lodash"])
         self.assertEqual(os.path.exists("out/lodash_REST.json"), True)
 
     def test_restcall_bad(self):
-        result = rest_call(['lodash', 'lodash', 1])
+        result = rest_call(["lodash", "lodash", 1])
         self.assertFalse(result)
 
     def test_scorecard_good(self):
-        scorecard_call(['lodash', 'lodash'])
+        scorecard_call(["lodash", "lodash"])
         self.assertEqual(os.path.exists("out/lodash_scorecard.json"), True)
     
     def test_scorecard_license(self):
-        scorecard_call(['lodash', 'lodash'])
+        scorecard_call(["lodash", "lodash"])
         with open("out/lodash_scorecard.json") as f:
             data = json.load(f)
-        self.assertEqual(data['repo']['name'], "github.com/lodash/lodash")
+        self.assertEqual(data["repo"]["name"], "github.com/lodash/lodash")
     
     def test_graphql_list(self):
-        result = graphql_metrics(['lodash', 'lodash'])
+        result = graphql_metrics(["lodash", "lodash"])
         self.assertEqual(len(result), 3)
 
     def test_graphql_ints(self):
-        result = graphql_metrics(['lodash', 'lodash'])
+        result = graphql_metrics(["lodash", "lodash"])
         for i in result:
             self.assertEqual(type(i), int)
 
@@ -46,7 +49,7 @@ class TestStringMethods(unittest.TestCase):
     def test_licensing_number(self):
         result = get_license("out/lodash_scorecard.json")
         self.assertEqual(result, 1)
-        
+
     def test_ramp_good(self):
         result = ramp_calc(10, 5)
         self.assertEqual(result, 0.5)
@@ -62,13 +65,13 @@ class TestStringMethods(unittest.TestCase):
     def test_correctness_bad(self):
         result = correctness_calc(0, 10)
         self.assertEqual(result, 0.5)
-    
+
     def test_bus_float_return(self):
-        result = bus_factor_calc(['lodash', 'lodash'])
+        result = bus_factor_calc(["lodash", "lodash"])
         self.assertEqual(type(result), float)
-    
+
     def test_bus_gt0(self):
-        result = bus_factor_calc(['lodash', 'lodash'])
+        result = bus_factor_calc(["lodash", "lodash"])
         self.assertGreater(result, 0)
 
     def test_norm_good_int(self):
@@ -77,15 +80,15 @@ class TestStringMethods(unittest.TestCase):
         self.assertGreater(res2, res1)
 
     def test_norm_good_decimal(self):
-        res1 = norm(.4)
-        res2 = norm(.7)
+        res1 = norm(0.4)
+        res2 = norm(0.7)
         self.assertGreater(res2, res1)
-    
+
     def test_scores_good(self):
-        result = get_scores(['cloudinary', 'cloudinary_npm'])
+        result = get_scores(["cloudinary", "cloudinary_npm"])
         self.assertEqual(len(result), 6)
     
     def test_scores_bad(self):
-        result = get_scores(['cloudinary', 'cloudinary_npm'])
+        result = get_scores(["cloudinary", "cloudinary_npm"])
         for i in result:
             self.assertLessEqual(i, 1)

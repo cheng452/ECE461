@@ -3,7 +3,7 @@
 {
     IFS=$'\n' read -r -d '' CAPTURED_STDERR;
     IFS=$'\n' read -r -d '' CAPTURED_STDOUT;
-} < <((printf '\0%s\0' "$(./helper_run $1)" 1>&2) 2>&1)
+} < <((printf '\0%s\0' "$(./helper_run "$1")" 1>&2) 2>&1)
 
 if [ "$LOG_LEVEL" = "0" ]; then
     echo "No logging!" > /dev/null 2>&1
