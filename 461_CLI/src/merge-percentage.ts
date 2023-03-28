@@ -59,7 +59,7 @@ async function getMergePercentage(owner: string, repo: string): Promise<any> {
             {
                 const response = await axios.get(`${GITHUB_BASE}/repos/${owner}/${repo}/pulls/${i}`, {
                     headers: {
-                    Authorization: `Token ${environment.GITHUB_TOKEN}`,
+                    Authorization: `Token ${environment.GITHUB_TOKEN}`
                     },
                 });
     

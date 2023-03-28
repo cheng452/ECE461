@@ -1,7 +1,16 @@
+import json
 import os
 import unittest
 
-from metrics_calc import *
+from metrics_calc import rest_call
+from metrics_calc import scorecard_call
+from metrics_calc import graphql_metrics
+from metrics_calc import get_maintained
+from metrics_calc import get_license
+from metrics_calc import ramp_calc
+from metrics_calc import correctness_calc
+from metrics_calc import bus_factor_calc
+from metrics_calc import get_scores
 
 # import coverage
 
@@ -18,13 +27,13 @@ class TestStringMethods(unittest.TestCase):
     def test_scorecard_good(self):
         scorecard_call(["lodash", "lodash"])
         self.assertEqual(os.path.exists("out/lodash_scorecard.json"), True)
-    
+
     def test_scorecard_license(self):
         scorecard_call(["lodash", "lodash"])
         with open("out/lodash_scorecard.json") as f:
             data = json.load(f)
         self.assertEqual(data["repo"]["name"], "github.com/lodash/lodash")
-    
+
     def test_graphql_list(self):
         result = graphql_metrics(["lodash", "lodash"])
         self.assertEqual(len(result), 3)
@@ -87,7 +96,7 @@ class TestStringMethods(unittest.TestCase):
     def test_scores_good(self):
         result = get_scores(["cloudinary", "cloudinary_npm"])
         self.assertEqual(len(result), 6)
-    
+
     def test_scores_bad(self):
         result = get_scores(["cloudinary", "cloudinary_npm"])
         for i in result:
