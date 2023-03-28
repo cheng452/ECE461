@@ -2,7 +2,7 @@ import json
 import re
 import subprocess
 
-#import sys
+# import sys
 
 
 # calls rest API typescript file, given args ([owner, repo])
@@ -105,12 +105,13 @@ def correctness_calc(issues, subs):
     if issues != 0:
         correctness_score = subs / issues
     else:
-        correctness_score = 0.5  ##our metric cannot accurately account for this
+        correctness_score = 0.5  ## our metric cannot accurately account for this
     return correctness_score
 
 
 # bus factor calculation, determined by # of contributors
-# based off assumption that "ideal" number of SWE on a team is 7, so number of contributors/7 would correlate to how many are necessary for success in repo
+# based off assumption that "ideal" number of SWE on a team is 7, so number of contributors/7 
+# would correlate to how many are necessary for success in repo
 def bus_factor_calc(args):
     contributors = subprocess.run(
         ["node", "src/contributors.js"] + args, stdout=subprocess.PIPE
@@ -118,12 +119,13 @@ def bus_factor_calc(args):
     contributors = contributors.decode().strip()
     contributors = int(contributors)
     bus_factor_score = (
-        contributors / 7  
-    )  ##7 is chosen based on "magic number" for SWE team size via google
+        contributors / 7
+    )  ## 7 is chosen based on "magic number" for SWE team size via google
     return bus_factor_score
 
 
-# Pinned version calculation, determined by number of pinned versions within package.json. Percentage of pinned to total dependencies
+# Pinned version calculation, determined by number of pinned versions within package.json. 
+# Percentage of pinned to total dependencies
 def version_calc(args):
     versions = subprocess.run(
         ["node", "src/Version.js"] + args, stdout=subprocess.PIPE
