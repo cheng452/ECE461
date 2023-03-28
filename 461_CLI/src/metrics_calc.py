@@ -18,7 +18,7 @@ def rest_call(args):
 def merge_percentage(args):
     if len(args) != 2:
         return False
-    subprocess.run(["node", "src/merge-percentage.ts"] + args)
+    subprocess.run(["node", "src/merge-percentage.js"] + args)
 
     return
 
