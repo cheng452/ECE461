@@ -9,6 +9,7 @@ from metrics_calc import (
     get_maintained,
     get_scores,
     graphql_metrics,
+    norm,
     ramp_calc,
     rest_call,
     scorecard_call,
