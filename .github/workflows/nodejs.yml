@@ -3,7 +3,7 @@
 
 name: Send to code GCP
 
-on push:
+on: push
 
 jobs:
   build:
