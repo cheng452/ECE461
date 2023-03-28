@@ -21,20 +21,20 @@ for url in urls:
     url_elements = url.split("/")
 
     # implemented when user enters github url
-    if ("github.com" in url_elements):
+    if "github.com" in url_elements:
         owner = url_elements[3]
         repo = url_elements[4]
         args = [owner, repo]
         scores = get_scores(args)
 
     # implemented when user enters npmjs url
-    elif ("www.npmjs.com" in url_elements):
+    elif "www.npmjs.com" in url_elements:
         owner = url_elements[4]
         args = [owner]
         url_out = str(
             subprocess.run(
-                ['node', 'src/npmjs-api.js'] + args, stdout=subprocess.PIPE
-                ).stdout
+                ["node", "src/npmjs-api.js"] + args, stdout=subprocess.PIPE
+            ).stdout
         )
         url_parts = url_out.split("/")
         owner = url_parts[3]
@@ -59,7 +59,7 @@ for url in urls:
     output["LICENSE_SCORE"] = 0 if scores[5] < 1 else 1
     output["CODE_REVIEWED_PERCENTAGE"] = "{:.1f}".format(scores[5])
     output["VERSION_SCORE"] = "{:.1f}".format(scores[6])
-    
+
     # Add to dictionary list
     dict_list.append(output)
 
