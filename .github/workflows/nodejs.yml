@@ -1,0 +1,23 @@
+# This workflow will be triggered on a push event. It will be connected to a Github Action Runner. 
+# This will allow us to have the newest version of our code in our server hosted on GCP.
+
+name: Send to code GCP
+
+on push:
+
+jobs:
+  build:
+  
+    runs-on: self hosted
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+        
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 18
+      uses: actions/setup.node@v1
+      with:
+        node-version: 18
+    - run: npm i
