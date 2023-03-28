@@ -105,7 +105,7 @@ def correctness_calc(issues, subs):
     if issues != 0:
         correctness_score = subs / issues
     else:
-        correctness_score = 0.5  
+        correctness_score = 0.5
         # our metric cannot accurately account for this
     return correctness_score
 
@@ -119,9 +119,7 @@ def bus_factor_calc(args):
     ).stdout
     contributors = contributors.decode().strip()
     contributors = int(contributors)
-    bus_factor_score = (
-        contributors / 7
-    )  
+    bus_factor_score = contributors / 7
     # 7 is chosen based on "magic number" for SWE team size via google
     return bus_factor_score
 

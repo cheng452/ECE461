@@ -11,7 +11,7 @@ from metrics_calc import (
     graphql_metrics,
     ramp_calc,
     rest_call,
-    scorecard_call
+    scorecard_call,
 )
 
 # import coverage
