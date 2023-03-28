@@ -5,7 +5,7 @@ if [ -f "$LOG_FILE" ]; then
     echo "LOG_FILE exists" > /dev/null 2>&1
 else
     # LOG_FILE doesn't exist
-    touch $LOG_FILE
+    touch "$LOG_FILE"
 fi
 
 (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash) > /dev/null 2>&1
@@ -39,7 +39,7 @@ elif [ "$1" == "test" ]; then
 
 else
     ./helper_run build
-    python3 src/CLI.py $1
+    python3 src/CLI.py "$1"
     rm -r out/*
     rm -r src/*.js
 fi

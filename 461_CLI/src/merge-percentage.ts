@@ -28,6 +28,9 @@ async function getMergePercentage(owner: string, repo: string): Promise<any> {
     let num_reviewed_pulls = 0;
     let num_undefined_pulls = 0;
 
+    let isMerged:any;
+    let isReviewed:any;
+
     try
     {
         // determine if the we will count the last 100 PRs, or the first 100
@@ -60,8 +63,8 @@ async function getMergePercentage(owner: string, repo: string): Promise<any> {
                     },
                 });
     
-                let isMerged = response['data']['merged'];
-                let isReviewed = response['data']['requested_reviewers'].length
+                isMerged = response['data']['merged'];
+                isReviewed = response['data']['requested_reviewers'].length
 
                 // increment the counter if the PR has been merged AND reviewed
                 if(isMerged && isReviewed)
@@ -95,8 +98,8 @@ async function getMergePercentage(owner: string, repo: string): Promise<any> {
                     },
                 });
 
-                let isMerged = response['data']['merged'];
-                let isReviewed = response['data']['requested_reviewers'].length
+                isMerged = response['data']['merged'];
+                isReviewed = response['data']['requested_reviewers'].length
 
                 if(isMerged && isReviewed)
                 {
