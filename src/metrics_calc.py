@@ -2,6 +2,7 @@ import sys
 import subprocess
 import json
 import re
+import os
 
 # calls rest API typescript file, given args ([owner, repo])
 def rest_call(args):
@@ -121,15 +122,19 @@ def get_scores(args):
     filename = "out/" + args[1] + "_scorecard.json"
 
     # maintained score call, returns maintained score, normalizes if score is not 0, otherwise returns 0
-    maintained = get_maintained(filename)
-    if (maintained != 0):
-        norm_maintained = norm(maintained)
-    else:
-        norm_maintained = 0
+    if os.path.exists(filename):
+        maintained = get_maintained(filename)
+        if (maintained != 0):
+            norm_maintained = norm(maintained)
+        else:
+            norm_maintained = 0
 
     # licensed score call, returns whether repo is licensed (returns 1), or not (returns 0)
     # therefore, no normalization is needed
-    licensed = get_license(filename)
+        licensed = get_license(filename)
+    else:
+        norm_maintained = 0
+        licensed = 0
 
     # net score calculation, determined by average of all normalized scores
     net_score = (norm_ramp + norm_correct + norm_bf + licensed + norm_maintained) / 5
