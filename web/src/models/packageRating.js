@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const packageRating = new mongoose.Schema({
+const packageRatingSchema = new mongoose.Schema({
     BusFactor: {
         type: Number,
         required: true
@@ -34,3 +34,5 @@ const packageRating = new mongoose.Schema({
         required: true
     }
 })
+
+module.exports = mongoose.model('PackageRating', packageRatingSchema)
