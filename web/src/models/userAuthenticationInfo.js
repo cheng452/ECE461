@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
-const userAuthenticationSchema = new mongoose.Schema({
+const userAuthenticationInfoSchema = new mongoose.Schema({
     password: {
+        description: "Password for a user. Per the spec, this should be a \"strong\" password.",
         type: String,
         required: true
     }
 })
 
-module.exports = mongoose.model('UserAuthentication', userAuthenticationSchema)
+module.exports = mongoose.model('UserAuthenticationInfo', userAuthenticationInfoSchema)
