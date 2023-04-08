@@ -1,13 +1,17 @@
 const mongoose = require('mongoose')
+const packageMetadata = require('./packageMetadata')
+const packageData = require('./packageData')
 
 const packageSchema = new mongoose.Schema({
-    Name: {
-        type: String,
+    metadata: {
+        ref: 'PackageMetadata',
+        description: '',
         required: true
     },
-    Version: {
-        type: String,
-        required: true
+    data: {
+        ref: 'PackageData',
+        description: '',
+        required: true,
     }
 })
 

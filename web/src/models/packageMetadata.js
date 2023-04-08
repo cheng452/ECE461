@@ -1,16 +1,24 @@
 const mongoose = require('mongoose')
+const packageName = require('./packageName')
+const packageID = require('./packageID')
 
 const packageMetadataSchema = new mongoose.Schema({
     Name: {
-        // $ref? See line 546 in YAML
+        ref: 'PackageName',
+        description: 'Package Name',
+        example: 'my-package',
         required: true
     },
     Version: {
+        description: 'Package Version',
         type: String,
+        example: '1.2.3',
         required: true
     },
     ID: {
-        // $ref? See line 554 in YAML
+        ref: 'PackageID',
+        description: 'Unique ID for use with the /package/{id} endpoint.',
+        example: '123567192081501',
         required: true
     }
 })
