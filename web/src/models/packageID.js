@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const packageIDSchema = new mongoose.Schema({
     PackageID: {
       description: "",
-      type: string
+      type: String
     }
 })
 
