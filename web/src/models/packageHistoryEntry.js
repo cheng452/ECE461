@@ -5,6 +5,7 @@ const PackageMetadata = require('./packageMetadata')
 const PackageHistoryEntrySchema = new mongoose.Schema({
     User: {
         ref: 'User',
+        type: mongoose.Schema.Types.ObjectId,
         description: "",
         required: true
     },
@@ -16,6 +17,7 @@ const PackageHistoryEntrySchema = new mongoose.Schema({
     },
     PackageMetaData: {
         ref: 'PackageMetadata',
+        type: mongoose.Schema.Types.ObjectId,
         description: "",
         required: true
     },

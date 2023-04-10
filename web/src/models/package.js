@@ -5,11 +5,13 @@ const packageData = require('./packageData')
 const packageSchema = new mongoose.Schema({
     metadata: {
         ref: 'PackageMetadata',
+        type: mongoose.Schema.Types.ObjectId,
         description: '',
         required: true
     },
     data: {
         ref: 'PackageData',
+        type: mongoose.Schema.Types.ObjectId,
         description: '',
         required: true,
     }
