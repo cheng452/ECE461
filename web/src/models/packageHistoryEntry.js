@@ -20,7 +20,7 @@ const PackageHistoryEntrySchema = new mongoose.Schema({
         required: true
     },
     Action: {
-        descripiton: "",
+        description: "",
         enum: ['CREATE', 'UPDATE', 'DOWNLOAD', 'RATE'], // enum is a validation option that ensures what is entered is one of 
                                                         // the strings in this list. Results in validation error if not
         type: String,
