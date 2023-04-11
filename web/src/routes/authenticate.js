@@ -3,12 +3,6 @@
 const express = require('express')
 const authenticate_router = express.Router()
 
-// Here we are importing the needed models for this endpoint
-// Models represent collections in the database. They define the structure of the documents in the collection and provide an 
-//      interface for querying, saving, updating, and deleting documents within the database
-const AuthenticationRequest = require('../models/authenticationRequest')
-const AuthenticationToken = require('../models/authenticationToken')
-
 // Here we define the routes for this endpoint
 // Per spec, this PUT: Authenticate this user -- get an access token.
 //                     If your system supports the authentication scheme described in the spec, then:
@@ -25,14 +19,8 @@ const AuthenticationToken = require('../models/authenticationToken')
 //          - 401: The user or password is invalid.
 //          - 501: This system does not support authentication.
 authenticate_router.put('/', async (req,res) => {
-
+    res.status(501).json({ message: 'This system does not support authentication.' })
 })
-
-// If functions are needed, name them according to operationId in spec
-// If functions needed for:
-//      - Creating authentication token
-//          Name it: CreateAuthToken
-// Replace these comments related to the function with comment describing function
 
 // Export the router as a module so other files can use it
 module.exports = authenticate_router
