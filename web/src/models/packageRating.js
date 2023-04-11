@@ -26,7 +26,7 @@ const packageRatingSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    GoodPinningPracice: {
+    GoodPinningPractice: {
         description: "The fraction of its dependencies that are pinned to at least\
                     \ a specific major+minor version, e.g. version 2.3.X of a package. (If\
                     \ there are zero dependencies, they should receive a 1.0 rating. If there\
