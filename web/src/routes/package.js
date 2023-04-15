@@ -187,7 +187,25 @@ package_router.get('/:id/rate', async(req,res) => {
 //          - 400: There is missing field(s) in the PackageName/AuthenticationToken or it is formed improperly, or the AuthenticationToken is invalid.
 //          - 404: No such package.
 package_router.get('/byName/:name', async(req,res) => {
-
+    const Name = await PackageName.findOne({PackageName: req.params.name})
+    let isValid = true
+    // Created test PackageHistoryEntry 
+    const test = {
+        User: '1234',
+        Date: new Date(),
+        PackageMetadata: 'abcd',
+        Action: 'CREATE'
+    }
+    try {
+        await Name.validate()
+    } catch (err){
+        isValid = false
+        res.status(404).json({ message: 'No such package.' })
+    }
+    if (isValid){
+        res.json(Name)
+        //res.json(test)
+    }
 })
 
 // Per spec, this DELETE: Delete all versions of this package.
@@ -199,7 +217,29 @@ package_router.get('/byName/:name', async(req,res) => {
 //          - 400: There is missing field(s) in the PackageName/AuthenticationToken or it is formed improperly, or the AuthenticationToken is invalid.
 //          - 404: Package does not exist.
 package_router.delete('/byName/:name', async(req,res) => {
-
+    const Name = await PackageName.findOne({PackageName: req.params.name})
+    let isValid = true
+    try {
+        await Name.validate()
+    } catch (err){
+        isValid = false
+        res.status(404).json({ message: 'No such package.' })
+    }
+    if (isValid){
+ 
+        res.status(200).json({ message: 'Package is deleted.' })
+        
+        await Promise.all([
+            // Is this all I have to delete 
+            //await Package.delete({ Name: req.params.name}),
+            //await PackageData.delete({ Name: req.params.name}),
+            await PackageName.deleteMany({ Name: req.params.name}),
+            //await PackageID.delete({ Name: req.params.name}),
+            //await PackageMetadata.delete({ Name: req.params.name}),
+            //await PackageRating.delete({ Name: req.params.name}),
+            //await PackageRegEx.delete({ Name: req.params.name})
+        ]);
+    }
 })
 
 // Per spec, this POST: Get any packages fitting the regular expression. Search for a package using regular expression over package name 
@@ -211,7 +251,7 @@ package_router.delete('/byName/:name', async(req,res) => {
 //          - 400: There is missing field(s) in the PackageRegEx/AuthenticationToken or it is formed improperly, or the AuthenticationToken is invalid.
 //          - 404: No package found under this regex.
 package_router.post('/byRegEx', async(req,res) => {
-
+    const newPackageDataSchema = new PackageData(req.body)
 })
 
 // If functions are needed, name them according to operationId in spec
