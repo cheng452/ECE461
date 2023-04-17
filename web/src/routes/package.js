@@ -217,28 +217,45 @@ package_router.get('/byName/:name', async(req,res) => {
 //          - 400: There is missing field(s) in the PackageName/AuthenticationToken or it is formed improperly, or the AuthenticationToken is invalid.
 //          - 404: Package does not exist.
 package_router.delete('/byName/:name', async(req,res) => {
-    const Name = await PackageName.findOne({PackageName: req.params.name})
+    const name = await PackageName.findOne({PackageName: req.params.name})
+    //console.log(Name)
     let isValid = true
     try {
-        await Name.validate()
+        await name.validate()
     } catch (err){
         isValid = false
         res.status(404).json({ message: 'No such package.' })
     }
     if (isValid){
- 
         res.status(200).json({ message: 'Package is deleted.' })
-        
+        const package = await Package.findOne(await PackageMetadata.findOne(await PackageName.findOne({PackageName: req.params.name})))
+        const md = await PackageMetadata.findById(package.metadata)
+        const data = await PackageData.findById(package.data)
+        const id = await PackageID.findById(md.ID)
         await Promise.all([
             // Is this all I have to delete 
-            //await Package.delete({ Name: req.params.name}),
-            //await PackageData.delete({ Name: req.params.name}),
-            await PackageName.deleteMany({ Name: req.params.name}),
-            //await PackageID.delete({ Name: req.params.name}),
-            //await PackageMetadata.delete({ Name: req.params.name}),
-            //await PackageRating.delete({ Name: req.params.name}),
-            //await PackageRegEx.delete({ Name: req.params.name})
+            Package.deleteMany(package._id),
+            PackageData.deleteMany(data._id),
+            //PackageHistoryEntry.deleteMany(name._id),
+            PackageID.deleteMany(id._id),
+            PackageMetadata.deleteMany(md._id),
+           // PackageQuery.deleteMany(name._id),
+            //PackageRating.deleteMany(name._id),
+            //SemverRange.deleteMany(name._id),
+            //User.deleteMany(name._id),
+            PackageName.deleteMany(name._id)
         ]);
+        
+    }
+})
+
+package_router.get('/', async (req, res) => {
+    try {
+        const packages = await PackageName.find()
+        res.json(packages)
+    }
+    catch (err) {
+        res.status(500)
     }
 })
 

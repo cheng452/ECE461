@@ -17,3 +17,9 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/package/byName/cloudinary
+
+###
+Delete http://localhost:3000/reset
+
+###
+GET http://localhost:3000/package
