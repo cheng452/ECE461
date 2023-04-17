@@ -224,7 +224,7 @@ package_router.delete('/byName/:name', async(req,res) => {
         await name.validate()
     } catch (err){
         isValid = false
-        res.status(404).json({ message: 'No such package.' })
+        res.status(404).json({ message: 'Package does not exist.' })
     }
     if (isValid){
         res.status(200).json({ message: 'Package is deleted.' })
